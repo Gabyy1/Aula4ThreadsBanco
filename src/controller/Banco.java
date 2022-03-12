@@ -12,6 +12,7 @@ public class Banco extends Thread {
 	}
 
 	public void run() {
+		
 		if (idBanco % 3 == 0) {
 			calculo();
 			transacao();
@@ -19,7 +20,8 @@ public class Banco extends Thread {
 			transacao();
 			calculo();
 			transacao();
-		}
+		
+	}
 		
 		if (idBanco % 3 == 1) {
 			calculo();
@@ -43,15 +45,16 @@ public class Banco extends Thread {
 	public void transacao() {
 		int tempo = 0;
 		
-		if(idBanco % 3 == 0)  {
-			tempo = 1500;
-		}
-		
 		if (idBanco % 3 == 1 ) {
 			tempo = 1000;
 		}
 		
 		if(idBanco % 3 == 2)  {
+			tempo = 1500;
+		}
+		
+
+		if(idBanco % 3 == 0)  {
 			tempo = 1500;
 		}
 		
@@ -61,7 +64,6 @@ public class Banco extends Thread {
 			System.out.println("A thread #" + idBanco + " está fazendo a transação.");
 			Thread.sleep(tempo);
 		} catch (InterruptedException e1) {
-			
 			e1.printStackTrace();
 		}finally {
 			semaforo.release();
@@ -74,18 +76,19 @@ public class Banco extends Thread {
 	
 	public void calculo() {
 		int tempo = 0;
-		
-		if(idBanco % 3 == 0)  {
-			tempo = (int) ((int) ((Math.random() * 1.1) +1) * Math.pow(10, 9));
-		}
-	
+			
 		if (idBanco % 3 == 1 ) {
-			tempo = (int) (int) ((Math.random() + 0.2) * Math.pow(10, 9));
+			tempo = (int) ((int) (Math.random() + 0.2) * Math.pow(10, 9));
 		}
 		
 		if(idBanco % 3 == 2)  {
 			tempo = (int) ((int) ((Math.random() + 1.6) + 0.5 )* Math.pow(10, 9));
 		}
+		
+		if(idBanco % 3 == 0)  {
+			tempo = (int) ((int) ((Math.random() * 1.1) +1) * Math.pow(10, 9));
+		}
+
 		
 		
 		
